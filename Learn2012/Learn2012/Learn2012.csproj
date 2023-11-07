@@ -67,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AppWindows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppWindows\ProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppWindows\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppWindows\ProfileWindow.xaml.cs">
       <DependentUpon>ProfileWindow.xaml</DependentUpon>
@@ -109,28 +116,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AttackType.cs">
-      <DependentUpon>LearningWPF2012Model.tt</DependentUpon>
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DotaWPFModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DotaWPFModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DotaWPFModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DotaWPFModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DotaWPFModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Hero.cs">
-      <DependentUpon>LearningWPF2012Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\LearningWPF2012Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LearningWPF2012Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\LearningWPF2012Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LearningWPF2012Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\LearningWPF2012Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LearningWPF2012Model.edmx</DependentUpon>
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>LearningWPF2012Model.tt</DependentUpon>
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\HeroPage.xaml.cs">
       <DependentUpon>HeroPage.xaml</DependentUpon>
@@ -164,12 +171,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\LearningWPF2012Model.edmx">
+    <EntityDeploy Include="Model\DotaWPFModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LearningWPF2012Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>DotaWPFModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\LearningWPF2012Model.edmx.diagram">
-      <DependentUpon>LearningWPF2012Model.edmx</DependentUpon>
+    <None Include="Model\DotaWPFModel.edmx.diagram">
+      <DependentUpon>DotaWPFModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -188,19 +195,20 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Model\LearningWPF2012Model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LearningWPF2012Model.Context.cs</LastGenOutput>
-      <DependentUpon>LearningWPF2012Model.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\LearningWPF2012Model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LearningWPF2012Model.edmx</DependentUpon>
-      <LastGenOutput>LearningWPF2012Model.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Model\DotaWPFModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DotaWPFModel.Context.cs</LastGenOutput>
+      <DependentUpon>DotaWPFModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\DotaWPFModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DotaWPFModel.edmx</DependentUpon>
+      <LastGenOutput>DotaWPFModel.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\settings_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

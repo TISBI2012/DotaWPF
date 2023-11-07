@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LearningWPF2012Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище DotaWPFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AttackType">
           <Key>
             <PropertyRef Name="Id" />
@@ -18,10 +18,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="HP" Type="int" Nullable="false" />
-          <Property Name="AttackTypeId" Type="int" Nullable="false" />
-          <Property Name="Lore" Type="nvarchar(max)" />
           <Property Name="MoveSpeed" Type="float" Nullable="false" />
+          <Property Name="HP" Type="int" Nullable="false" />
+          <Property Name="Lore" Type="nvarchar(max)" />
+          <Property Name="AttackTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -45,7 +45,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LearningWPF2012ModelStoreContainer">
+        <EntityContainer Name="Хранилище DotaWPFModelContainer">
           <EntitySet Name="AttackType" EntityType="Self.AttackType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hero" EntityType="Self.Hero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -58,7 +58,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LearningWPF2012Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DotaWPFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AttackType">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,10 +73,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="HP" Type="Int32" Nullable="false" />
-          <Property Name="AttackTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Lore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MoveSpeed" Type="Double" Nullable="false" />
+          <Property Name="HP" Type="Int32" Nullable="false" />
+          <Property Name="Lore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AttackTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AttackType" Relationship="Self.FK_Hero_AttackType" FromRole="Hero" ToRole="AttackType" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -101,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LearningWPF2012Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DotaWPFEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AttackType" EntityType="Self.AttackType" />
           <EntitySet Name="Hero" EntityType="Self.Hero" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -115,9 +115,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LearningWPF2012ModelStoreContainer" CdmEntityContainer="LearningWPF2012Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DotaWPFModelContainer" CdmEntityContainer="DotaWPFEntities">
           <EntitySetMapping Name="AttackType">
-            <EntityTypeMapping TypeName="LearningWPF2012Model.AttackType">
+            <EntityTypeMapping TypeName="DotaWPFModel.AttackType">
               <MappingFragment StoreEntitySet="AttackType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -125,19 +125,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hero">
-            <EntityTypeMapping TypeName="LearningWPF2012Model.Hero">
+            <EntityTypeMapping TypeName="DotaWPFModel.Hero">
               <MappingFragment StoreEntitySet="Hero">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="HP" ColumnName="HP" />
-                <ScalarProperty Name="AttackTypeId" ColumnName="AttackTypeId" />
-                <ScalarProperty Name="Lore" ColumnName="Lore" />
                 <ScalarProperty Name="MoveSpeed" ColumnName="MoveSpeed" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="Lore" ColumnName="Lore" />
+                <ScalarProperty Name="AttackTypeId" ColumnName="AttackTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="LearningWPF2012Model.sysdiagrams">
+            <EntityTypeMapping TypeName="DotaWPFModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -164,7 +164,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

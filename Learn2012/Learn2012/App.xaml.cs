@@ -12,6 +12,6 @@ namespace Learn2012
 {
     public partial class App : Application
     {
-        public static LearningWPF2012Entities DB = new LearningWPF2012Entities();
+        public static DotaWPFEntities DB = new DotaWPFEntities();
     }
 }

@@ -28,25 +28,29 @@
               Background="#FF282828">
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="BSettings"
-                        Content="Settings"
-                        Click="BSettings_Click" />
+                        Click="BSettings_Click"
+                        Style="{StaticResource MenuButton}">
+                    <Image Source="/Resources/settings_icon.png"
+                           Height="30"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Margin="2" />
+                </Button>
                 <Button x:Name="BMainMenu"
-                        Background="Transparent"
+                        Style="{StaticResource MenuButton}"
                         Click="BMainMenu_Click">
                     <Image Source="/Resources/dota.png"
-                           Height="60" />
+                           Height="60"
+                           Margin="2" />
                 </Button>
                 <Button x:Name="BUsers"
                         Style="{StaticResource MenuButton}"
                         Content="Герои"
-                        Click="BUsers_Click"
-                        Margin="5,5,0,5" />
+                        Click="BUsers_Click" />
 
                 <Button x:Name="BProfile"
                         Content="Профиль"
                         Style="{StaticResource MenuButton}"
-                        Click="BProfile_Click"
-                        Margin="5,5,0,5" />
+                        Click="BProfile_Click" />
             </StackPanel>
             <Button x:Name="BExit"
                     Click="BExit_Click"

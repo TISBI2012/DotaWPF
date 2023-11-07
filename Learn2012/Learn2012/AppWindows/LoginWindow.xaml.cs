@@ -1,4 +1,4 @@
-﻿using Learn2012.AppWindows;
+﻿using Learn2012.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +11,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Learn2012.Pages
+namespace Learn2012.AppWindows
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Логика взаимодействия для LoginWindow.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LoginWindow : Window
     {
-        public LoginPage()
+        public static LoginWindow LoginWindowInstance;
+        public LoginWindow()
         {
             InitializeComponent();
-        }
-
-        private void BLogin_Click(object sender, RoutedEventArgs e)
-        {
-            new MainWindow().Show();
-            LoginWindow.LoginWindowInstance.Close();
+            MainFrame.Navigate(new LoginPage());
+            LoginWindowInstance = this;
         }
     }
 }

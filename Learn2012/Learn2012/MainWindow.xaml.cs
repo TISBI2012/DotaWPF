@@ -26,7 +26,7 @@ namespace Learn2012
         {
             InitializeComponent();
 
-            MainFrame.Navigate(new LoginPage());
+            MainFrame.Navigate(new MainMenuPage());
 
         }
         //метод для кнопки
