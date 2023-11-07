@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Learn2012.AppWindows
+namespace Learn2012.Pages
 {
     /// <summary>
-    /// Interaction logic for ProfileWindow.xaml
+    /// Логика взаимодействия для ProfilePage.xaml
     /// </summary>
-    public partial class ProfileWindow : Window
+    public partial class ProfilePage : Page
     {
-        public ProfileWindow()
+        public ProfilePage()
         {
             InitializeComponent();
         }

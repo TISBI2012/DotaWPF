@@ -71,10 +71,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AppWindows\ProfileWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,9 +81,6 @@
     </Compile>
     <Compile Include="AppWindows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AppWindows\ProfileWindow.xaml.cs">
-      <DependentUpon>ProfileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -110,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\HeroesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,7 +133,13 @@
     <Compile Include="Model\Hero.cs">
       <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Role.cs">
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
       <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\HeroPage.xaml.cs">
@@ -153,6 +156,9 @@
     </Compile>
     <Compile Include="Pages\HeroesPage.xaml.cs">
       <DependentUpon>HeroesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -208,6 +214,7 @@
       <DependentUpon>DotaWPFModel.edmx</DependentUpon>
       <LastGenOutput>DotaWPFModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\off_icon.png" />
     <Resource Include="Resources\settings_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

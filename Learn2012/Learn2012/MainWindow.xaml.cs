@@ -29,16 +29,6 @@ namespace Learn2012
             MainFrame.Navigate(new MainMenuPage());
 
         }
-        //метод для кнопки
-        private void Menu_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new MainMenuPage());
-        }
-
-        private void ListPage_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void BExit_Click(object sender, RoutedEventArgs e)
         {
@@ -46,24 +36,9 @@ namespace Learn2012
             App.Current.Shutdown();
         }
 
-        private void BMessage_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("Вы отправили: " + TBMessage.Text);
-        }
-
         private void BProfile_Click(object sender, RoutedEventArgs e)
         {
-            //1. прописать using если это необходимо
-            //2. создать переменную для окна
-            ProfileWindow profileWindow = new ProfileWindow();
-            //3. вызвать на переменной метод Show() или ShowDialog()
-            //profileWindow.Show();
-            profileWindow.ShowDialog();
-        }
-
-        private void BLogin_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new LoginPage());
+            MainFrame.Navigate(new ProfilePage());
         }
 
         private void BUsers_Click(object sender, RoutedEventArgs e)
@@ -78,6 +53,7 @@ namespace Learn2012
 
         private void BMainMenu_Click(object sender, RoutedEventArgs e)
         {
+            MainFrame.Navigate(new MainMenuPage());
 
         }
     }

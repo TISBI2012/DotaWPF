@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,10 +25,13 @@ namespace Learn2012.Pages
         {
             InitializeComponent();
         }
-
-        private void BList_Click(object sender, RoutedEventArgs e)
+        private void BGit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ListPage());
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/TISBI2012",
+                UseShellExecute = true
+            });
         }
     }
 }

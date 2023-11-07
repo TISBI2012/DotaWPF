@@ -27,6 +27,8 @@ namespace Learn2012.Model
     
         public virtual DbSet<AttackType> AttackType { get; set; }
         public virtual DbSet<Hero> Hero { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

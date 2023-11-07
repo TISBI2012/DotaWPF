@@ -5,10 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="82afb184360944c6b4ef5ee7c05c4e8b" Name="Diagram1">
-        <EntityTypeShape EntityType="DotaWPFModel.AttackType" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DotaWPFModel.Hero" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DotaWPFModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="DotaWPFModel.FK_Hero_AttackType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DotaWPFModel.AttackType" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="DotaWPFModel.Hero" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="DotaWPFModel.Role" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="DotaWPFModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DotaWPFModel.User" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="DotaWPFModel.FK_Hero_AttackType" />
+        <AssociationConnector Association="DotaWPFModel.FK_User_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

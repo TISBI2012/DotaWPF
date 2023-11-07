@@ -11,12 +11,13 @@
 
     <Grid Background="Transparent">
         <StackPanel>
-
-            <TextBlock Text="MainMenu"
+            <TextBlock Text="Dota 201.2"
                        FontSize="50" />
-            <Button x:Name="BList"
-                    Content="To list"
-                    Click="BList_Click" />
+            <Button x:Name="BGit"
+                    Content="Git Hub"
+                    Click="BGit_Click"
+                    Style="{StaticResource MenuButton}"
+                    HorizontalAlignment="Left" />
         </StackPanel>
     </Grid>
 </Page>

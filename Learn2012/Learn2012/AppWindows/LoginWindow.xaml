@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Learn2012.AppWindows"
         mc:Ignorable="d"
-        Title="LoginWindow"
+        Title="Dota 201.1"
         WindowStyle="ToolWindow"
         Height="450"
         Width="400"
         MinHeight="450"
-        MinWidth="400">
-    <Grid>
+        MinWidth="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid Background="#FF252525">
+        <Image Source="/Resources/dota.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Height="300"
+               Opacity="0.3" />
         <Frame x:Name="MainFrame" />
     </Grid>
 </Window>

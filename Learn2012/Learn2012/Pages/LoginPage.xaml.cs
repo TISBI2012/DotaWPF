@@ -28,8 +28,13 @@ namespace Learn2012.Pages
 
         private void BLogin_Click(object sender, RoutedEventArgs e)
         {
-            new MainWindow().Show();
-            LoginWindow.LoginWindowInstance.Close();
+            var user = App.DB.User.FirstOrDefault(u => u.Login == TBLogin.Text && u.Password == PBPassword.Password);
+            if (user != null)
+            {
+                new MainWindow().Show();
+                LoginWindow.LoginWindowInstance.Close();
+            }
+
         }
     }
 }

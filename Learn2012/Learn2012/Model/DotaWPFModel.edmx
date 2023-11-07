@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DotaWPFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DotaWPFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AttackType">
           <Key>
             <PropertyRef Name="Id" />
@@ -23,6 +23,13 @@
           <Property Name="Lore" Type="nvarchar(max)" />
           <Property Name="AttackTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -33,6 +40,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Hero_AttackType">
           <End Role="AttackType" Type="Self.AttackType" Multiplicity="1" />
           <End Role="Hero" Type="Self.Hero" Multiplicity="*" />
@@ -42,56 +58,106 @@
             </Principal>
             <Dependent Role="Hero">
               <PropertyRef Name="AttackTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище DotaWPFModelContainer">
           <EntitySet Name="AttackType" EntityType="Self.AttackType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hero" EntityType="Self.Hero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Hero_AttackType" Association="Self.FK_Hero_AttackType">
             <End Role="AttackType" EntitySet="AttackType" />
             <End Role="Hero" EntitySet="Hero" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DotaWPFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DotaWPFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttackType" EntityType="DotaWPFModel.AttackType" />
+          <EntitySet Name="Hero" EntityType="DotaWPFModel.Hero" />
+          <EntitySet Name="Role" EntityType="DotaWPFModel.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="DotaWPFModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="DotaWPFModel.User" />
+          <AssociationSet Name="FK_Hero_AttackType" Association="DotaWPFModel.FK_Hero_AttackType">
+            <End Role="AttackType" EntitySet="AttackType" />
+            <End Role="Hero" EntitySet="Hero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="DotaWPFModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="AttackType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Hero" Relationship="Self.FK_Hero_AttackType" FromRole="AttackType" ToRole="Hero" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hero" Relationship="DotaWPFModel.FK_Hero_AttackType" FromRole="AttackType" ToRole="Hero" />
         </EntityType>
         <EntityType Name="Hero">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MoveSpeed" Type="Double" Nullable="false" />
           <Property Name="HP" Type="Int32" Nullable="false" />
           <Property Name="Lore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AttackTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AttackType" Relationship="Self.FK_Hero_AttackType" FromRole="Hero" ToRole="AttackType" />
+          <NavigationProperty Name="AttackType" Relationship="DotaWPFModel.FK_Hero_AttackType" FromRole="Hero" ToRole="AttackType" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="DotaWPFModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="DotaWPFModel.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
         <Association Name="FK_Hero_AttackType">
-          <End Role="AttackType" Type="Self.AttackType" Multiplicity="1" />
-          <End Role="Hero" Type="Self.Hero" Multiplicity="*" />
+          <End Type="DotaWPFModel.AttackType" Role="AttackType" Multiplicity="1" />
+          <End Type="DotaWPFModel.Hero" Role="Hero" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AttackType">
               <PropertyRef Name="Id" />
@@ -101,15 +167,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DotaWPFEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AttackType" EntityType="Self.AttackType" />
-          <EntitySet Name="Hero" EntityType="Self.Hero" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_Hero_AttackType" Association="Self.FK_Hero_AttackType">
-            <End Role="AttackType" EntitySet="AttackType" />
-            <End Role="Hero" EntitySet="Hero" />
-          </AssociationSet>
-        </EntityContainer>
+        <Association Name="FK_User_Role">
+          <End Type="DotaWPFModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="DotaWPFModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -119,31 +188,49 @@
           <EntitySetMapping Name="AttackType">
             <EntityTypeMapping TypeName="DotaWPFModel.AttackType">
               <MappingFragment StoreEntitySet="AttackType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hero">
             <EntityTypeMapping TypeName="DotaWPFModel.Hero">
               <MappingFragment StoreEntitySet="Hero">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="MoveSpeed" ColumnName="MoveSpeed" />
-                <ScalarProperty Name="HP" ColumnName="HP" />
-                <ScalarProperty Name="Lore" ColumnName="Lore" />
                 <ScalarProperty Name="AttackTypeId" ColumnName="AttackTypeId" />
+                <ScalarProperty Name="Lore" ColumnName="Lore" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="MoveSpeed" ColumnName="MoveSpeed" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="DotaWPFModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DotaWPFModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DotaWPFModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

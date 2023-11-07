@@ -9,22 +9,16 @@
             <Border Background="{TemplateBinding Background}"
                     BorderBrush="Transparent"
                     BorderThickness="0"
-                    CornerRadius="0"
-                    Margin="0" Padding="5,0,5,0">
+                    CornerRadius="0" Padding="5,0,5,0">
                 <ContentPresenter HorizontalAlignment="Center"
                                   VerticalAlignment="Center" />
             </Border>
         </ControlTemplate>
 
-        <Style x:Key="ButtonBase"
+        <Style x:Key="MenuButton"
                TargetType="Button">
             <Setter Property="Template"
                     Value="{StaticResource ButtonControlTemplate}" />
-        </Style>
-
-        <Style x:Key="MenuButton"
-               BasedOn="{StaticResource ButtonBase}"
-               TargetType="Button">
             <Setter Property="Background"
                     Value="#FF595353" />
             <Setter Property="Foreground"
@@ -38,11 +32,6 @@
                             Value="Gray" />
                 </Trigger>
             </Style.Triggers>
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="Margin"
-                    Value="5" />
         </Style>
 
 
