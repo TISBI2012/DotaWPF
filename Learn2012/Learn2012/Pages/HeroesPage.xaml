@@ -19,6 +19,17 @@
         <StackPanel>
             <TextBlock Text="Герои"
                        FontSize="40" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Поиск: "/>
+                <TextBox x:Name="TBSearch" 
+                         Width="200"
+                         TextChanged="TBSearch_TextChanged"/>
+                <TextBlock Text="Тип атаки: "/>
+                <ComboBox x:Name="CBAttackTypes" 
+                          DisplayMemberPath="Name"
+                          Width="200"
+                          SelectionChanged="CBAttackTypes_SelectionChanged"/>
+            </StackPanel>
         </StackPanel>
         <DataGrid x:Name="DGHeroes"
                   Grid.Row="1"

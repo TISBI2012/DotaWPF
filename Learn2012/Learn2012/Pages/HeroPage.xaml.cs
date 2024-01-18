@@ -32,6 +32,15 @@ namespace Learn2012.Pages
 
         private void BAddHero_Click(object sender, RoutedEventArgs e)
         {
+            string errorMessage = "";
+            //различные проверки на валидность
+            if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                MessageBox.Show(errorMessage);
+                return;
+            }
+
+            //добавление и сохранение в бд
             App.DB.Hero.Add(contextHero);
             App.DB.SaveChanges();
             NavigationService.GoBack();
