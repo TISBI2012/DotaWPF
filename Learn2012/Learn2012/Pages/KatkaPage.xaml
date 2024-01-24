@@ -20,7 +20,8 @@
             <ComboBox x:Name="CBUsers"
                       DisplayMemberPath="Login" />
             <TextBlock Text="Команда" />
-            <ComboBox x:Name="CBTeams" SelectedIndex="0">
+            <ComboBox x:Name="CBTeams"
+                      SelectedIndex="0">
                 <ComboBoxItem Content="Силы света" />
                 <ComboBoxItem Content="Силы тьмы" />
             </ComboBox>
