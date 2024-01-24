@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\KatkaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +137,9 @@
     <Compile Include="Model\Hero.cs">
       <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Katka.cs">
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Role.cs">
       <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
@@ -142,8 +149,14 @@
     <Compile Include="Model\User.cs">
       <DependentUpon>DotaWPFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserKatka.cs">
+      <DependentUpon>DotaWPFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HeroPage.xaml.cs">
       <DependentUpon>HeroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\KatkaPage.xaml.cs">
+      <DependentUpon>KatkaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ListPage.xaml.cs">
       <DependentUpon>ListPage.xaml</DependentUpon>

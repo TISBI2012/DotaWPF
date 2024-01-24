@@ -39,7 +39,7 @@ namespace Learn2012.Pages
             var filtred = App.DB.Hero.ToList();
             var searchText = TBSearch.Text.ToLower();
             AttackType selectedAttackType = CBAttackTypes.SelectedItem as AttackType;
-            
+
             if (string.IsNullOrWhiteSpace(searchText) == false)
             {
                 filtred = filtred.Where(x => x.Name.ToLower().Contains(searchText) ||

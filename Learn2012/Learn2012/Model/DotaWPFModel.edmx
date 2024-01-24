@@ -23,6 +23,15 @@
           <Property Name="Lore" Type="nvarchar(max)" />
           <Property Name="AttackTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Katka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -49,6 +58,15 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserKatka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="KatkaId" Type="int" Nullable="false" />
+          <Property Name="TeamIndex" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Hero_AttackType">
           <End Role="AttackType" Type="Self.AttackType" Multiplicity="1" />
           <End Role="Hero" Type="Self.Hero" Multiplicity="*" />
@@ -73,12 +91,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserKatka_Katka">
+          <End Role="Katka" Type="Self.Katka" Multiplicity="1" />
+          <End Role="UserKatka" Type="Self.UserKatka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Katka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserKatka">
+              <PropertyRef Name="KatkaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserKatka_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserKatka" Type="Self.UserKatka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserKatka">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище DotaWPFModelContainer">
           <EntitySet Name="AttackType" EntityType="Self.AttackType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hero" EntityType="Self.Hero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Katka" EntityType="Self.Katka" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserKatka" EntityType="Self.UserKatka" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Hero_AttackType" Association="Self.FK_Hero_AttackType">
             <End Role="AttackType" EntitySet="AttackType" />
             <End Role="Hero" EntitySet="Hero" />
@@ -86,6 +130,14 @@
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserKatka_Katka" Association="Self.FK_UserKatka_Katka">
+            <End Role="Katka" EntitySet="Katka" />
+            <End Role="UserKatka" EntitySet="UserKatka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserKatka_User" Association="Self.FK_UserKatka_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserKatka" EntitySet="UserKatka" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -95,16 +147,26 @@
         <EntityContainer Name="DotaWPFEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AttackType" EntityType="DotaWPFModel.AttackType" />
           <EntitySet Name="Hero" EntityType="DotaWPFModel.Hero" />
+          <EntitySet Name="Katka" EntityType="DotaWPFModel.Katka" />
           <EntitySet Name="Role" EntityType="DotaWPFModel.Role" />
           <EntitySet Name="sysdiagrams" EntityType="DotaWPFModel.sysdiagrams" />
           <EntitySet Name="User" EntityType="DotaWPFModel.User" />
+          <EntitySet Name="UserKatka" EntityType="DotaWPFModel.UserKatka" />
           <AssociationSet Name="FK_Hero_AttackType" Association="DotaWPFModel.FK_Hero_AttackType">
             <End Role="AttackType" EntitySet="AttackType" />
             <End Role="Hero" EntitySet="Hero" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserKatka_Katka" Association="DotaWPFModel.FK_UserKatka_Katka">
+            <End Role="Katka" EntitySet="Katka" />
+            <End Role="UserKatka" EntitySet="UserKatka" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="DotaWPFModel.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserKatka_User" Association="DotaWPFModel.FK_UserKatka_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserKatka" EntitySet="UserKatka" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AttackType">
@@ -126,6 +188,16 @@
           <Property Name="Lore" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AttackTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AttackType" Relationship="DotaWPFModel.FK_Hero_AttackType" FromRole="Hero" ToRole="AttackType" />
+        </EntityType>
+        <EntityType Name="Katka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Precision="7" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UserKatka" Relationship="DotaWPFModel.FK_UserKatka_Katka" FromRole="Katka" ToRole="UserKatka" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -154,6 +226,18 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="DotaWPFModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="UserKatka" Relationship="DotaWPFModel.FK_UserKatka_User" FromRole="User" ToRole="UserKatka" />
+        </EntityType>
+        <EntityType Name="UserKatka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="KatkaId" Type="Int32" Nullable="false" />
+          <Property Name="TeamIndex" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Katka" Relationship="DotaWPFModel.FK_UserKatka_Katka" FromRole="UserKatka" ToRole="Katka" />
+          <NavigationProperty Name="User" Relationship="DotaWPFModel.FK_UserKatka_User" FromRole="UserKatka" ToRole="User" />
         </EntityType>
         <Association Name="FK_Hero_AttackType">
           <End Type="DotaWPFModel.AttackType" Role="AttackType" Multiplicity="1" />
@@ -164,6 +248,18 @@
             </Principal>
             <Dependent Role="Hero">
               <PropertyRef Name="AttackTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserKatka_Katka">
+          <End Type="DotaWPFModel.Katka" Role="Katka" Multiplicity="1" />
+          <End Type="DotaWPFModel.UserKatka" Role="UserKatka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Katka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserKatka">
+              <PropertyRef Name="KatkaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -179,7 +275,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_UserKatka_User">
+          <End Type="DotaWPFModel.User" Role="User" Multiplicity="1" />
+          <End Type="DotaWPFModel.UserKatka" Role="UserKatka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserKatka">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -201,6 +309,16 @@
                 <ScalarProperty Name="HP" ColumnName="HP" />
                 <ScalarProperty Name="MoveSpeed" ColumnName="MoveSpeed" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Katka">
+            <EntityTypeMapping TypeName="DotaWPFModel.Katka">
+              <MappingFragment StoreEntitySet="Katka">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -230,6 +348,16 @@
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserKatka">
+            <EntityTypeMapping TypeName="DotaWPFModel.UserKatka">
+              <MappingFragment StoreEntitySet="UserKatka">
+                <ScalarProperty Name="TeamIndex" ColumnName="TeamIndex" />
+                <ScalarProperty Name="KatkaId" ColumnName="KatkaId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

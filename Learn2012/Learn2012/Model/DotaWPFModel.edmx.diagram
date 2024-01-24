@@ -4,14 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="82afb184360944c6b4ef5ee7c05c4e8b" Name="Diagram1">
-        <EntityTypeShape EntityType="DotaWPFModel.AttackType" Width="1.5" PointX="0.75" PointY="4.375" />
-        <EntityTypeShape EntityType="DotaWPFModel.Hero" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="DotaWPFModel.Role" Width="1.5" PointX="0.75" PointY="1.125" />
-        <EntityTypeShape EntityType="DotaWPFModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
+      <Diagram DiagramId="82afb184360944c6b4ef5ee7c05c4e8b" Name="Diagram1" ZoomLevel="130">
+        <EntityTypeShape EntityType="DotaWPFModel.AttackType" Width="1.5" PointX="5.75" PointY="5.375" />
+        <EntityTypeShape EntityType="DotaWPFModel.Hero" Width="1.5" PointX="8" PointY="5" />
+        <EntityTypeShape EntityType="DotaWPFModel.Katka" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="DotaWPFModel.Role" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DotaWPFModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="DotaWPFModel.User" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DotaWPFModel.UserKatka" Width="1.5" PointX="5.25" PointY="0.875" />
         <AssociationConnector Association="DotaWPFModel.FK_Hero_AttackType" />
+        <AssociationConnector Association="DotaWPFModel.FK_UserKatka_Katka" />
         <AssociationConnector Association="DotaWPFModel.FK_User_Role" />
+        <AssociationConnector Association="DotaWPFModel.FK_UserKatka_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

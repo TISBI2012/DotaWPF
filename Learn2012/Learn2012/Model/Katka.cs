@@ -12,20 +12,19 @@ namespace Learn2012.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Katka
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Katka()
         {
             this.UserKatka = new HashSet<UserKatka>();
         }
     
         public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int RoleId { get; set; }
+        public System.TimeSpan StartTime { get; set; }
+        public Nullable<System.TimeSpan> EndTime { get; set; }
+        public System.DateTime Date { get; set; }
     
-        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserKatka> UserKatka { get; set; }
     }

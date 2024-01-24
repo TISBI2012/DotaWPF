@@ -56,5 +56,11 @@ namespace Learn2012
             MainFrame.Navigate(new MainMenuPage());
 
         }
+
+        private void BKatka_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new KatkaPage());
+
+        }
     }
 }

@@ -52,6 +52,10 @@
                         Content="Профиль"
                         Style="{StaticResource MenuButton}"
                         Click="BProfile_Click" />
+                <Button x:Name="BKatka"
+                        Content="Создать катку"
+                        Style="{StaticResource MenuButton}"
+                        Click="BKatka_Click" />
             </StackPanel>
             <Button x:Name="BExit"
                     Click="BExit_Click"
